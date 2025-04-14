@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>CHUKI ANALYSIS</h1>
+    <table id="dataTable">
+        <thead>
+            <tr>
+                {% if user.is_superuser %}
+                <th>users</th>
+                {% endif %}
+                <th>Text</th>
+                <th>verdict</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in texts %}
+            {% if user.is_superuser %}
+            <tr>
+                {% if item.user.username and item.user.username|slice:":1" == "$" %}
+                <td>{{ item.user.username|slice:"1:" }}</td>
+                {% else%}
+                <td>{{ item.user.first_name }}</td>
+                {% endif %}
+                {% if item.text and item.text|slice:":1" == "$" %}
+                <td>{{ item.text|slice:"1:" }}</td>
+                {% else %}
+                <td>{{ item.text }}</td>
+                {% endif %}
+                <td>{{ item.predictions }}</td>
+
+            </tr>
+            {% else %}
+            <tr>
+                <td>${{ item.text }}</td>
+                <td>{{ item.hate }}</td>
+
+            </tr>
+            {% endif%}
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="get" action="{% url 'download_csv' %}">
+        <button type="submit">Download Data</button>
+    </form>
+</div>
+
+<div id="overlay" class="overlay">
+    <div class="overlay-content">
+        <span id="closeOverlay" class="close-button">&times;</span>
+        <p id="overlayText"></p>
+    </div>
+</div>
+{% endblock %}

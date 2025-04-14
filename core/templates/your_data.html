@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/user_update.css' %}">
+    <link rel="stylesheet" href="{% static 'css/table.css' %}">
+    <title>Update Profile</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="{% url 'home' %}" class="navbar-brand">Home</a>
+                <div class="navbar-menu">
+                    <a href="{% url 'update_user' %}" class="navbar-item">Update Profile</a>
+                    <a href="{% url 'update_password' %}" class="navbar-item">Update Password</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+<div class="container">
+  <h1>CHUKI ANALYSIS</h1>
+  <table id="dataTable">
+    <thead>
+      <tr>
+        {% if user.is_superuser %}
+        <th>users</th>
+        {% endif %}
+        <th>Text</th>
+        <th>verdict</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in texts %} {% if user.is_superuser %}
+      <tr>
+        {% if item.user.username and item.user.username|slice:":1" == "$" %}
+        <td>{{ item.user.username|slice:"1:" }}</td>
+        {% else %}
+        <td>{{ item.user.username }}</td>
+        {% endif %} {% if item.text and item.text|slice:":1" == "$" %}
+        <td>{{ item.text|slice:"1:" }}</td>
+        {% else %}
+        <td>{{ item.text }}</td>
+        {% endif %}
+        <td>{{ item.predictions }}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td>${{ itemtext|slice:":"|default:'' }}</td>
+        <td>{{ item.predictions }}</td>
+      </tr>
+      {% endif%} {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+</html>

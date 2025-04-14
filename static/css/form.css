@@ -1,0 +1,123 @@
+/* General body and layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.form {
+    margin-top: 13vh;
+}
+
+/* Container to hold the form */
+.form-container {
+    background-color: #fff;
+    width: 40vw;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Spacing between form elements */
+}
+
+/* Targeting only h2 inside form-container */
+.form-container h2 {
+    text-align: center;
+    color: #2e2e3d;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+/* Targeting only input elements inside form-container */
+.form-container input[type="text"],
+.form-container input[type="password"],
+.form-container input[type="email"],
+.form-container input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="password"]:focus {
+    border-color: #003;
+    outline: none;
+    box-shadow: 0px 0px 4px rgba(0, 0, 51, 0.3);
+}
+
+/* Submit button styling within the form */
+.form-container input[type="submit"] {
+    background-color: #003;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.form-container input[type="submit"]:hover {
+    background-color: #0055cc;
+}
+
+/* Text below the form (e.g., sign-up link) */
+.form-container p {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.form-container p a {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.form-container p a:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 400px) {
+    .form-container {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="password"],
+    .form-container input[type="email"],
+    .form-container input[type="submit"] {
+        font-size: 12px;
+        padding: 8px;
+    }
+}
+
+.btn-google {
+    display: inline-block;
+    background-color: #db4437;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.btn-google:hover {
+    background-color: #c33d2d;
+}
